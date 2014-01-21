@@ -45,6 +45,7 @@ CREATE ALIAS ST_SetSRID FOR "geodb.GeoDB.ST_SetSRID"
 CREATE ALIAS ST_Simplify FOR "geodb.GeoDB.ST_Simplify"
 CREATE ALIAS ST_SymDifference FOR "geodb.GeoDB.ST_SymDifference"
 CREATE ALIAS ST_Touches FOR "geodb.GeoDB.ST_Touches"
+CREATE ALIAS ST_Transform for "geodb.GeoDB.ST_Transform"
 CREATE ALIAS ST_Union FOR "geodb.GeoDB.ST_Union"
 CREATE ALIAS ST_Within FOR "geodb.GeoDB.ST_Within"
 CREATE ALIAS Version FOR "geodb.GeoDB.Version"
@@ -58,3 +59,4 @@ CREATE DOMAIN GEOMETRYCOLLECTION AS BLOB
 CREATE DOMAIN GEOMETRY AS BLOB
 CREATE AGGREGATE ST_Extent FOR "geodb.aggregate.Extent"
 CREATE AGGREGATE ST_Union_Aggregate FOR "geodb.aggregate.Union"
+CREATE TABLE IF NOT EXISTS spatial_ref_sys (srid INTEGER NOT NULL PRIMARY KEY, auth_name CHARACTER VARYING(256),auth_srid INTEGER, srtext CHARACTER VARYING(2048), proj4text CHARACTER VARYING(2048))

@@ -143,6 +143,17 @@ public class GeoDBExtraFunctionsTest extends GeoDBTestSupport {
         st.close();
         assertThat(geometry.getArea(), is(125.0));
     }
+    
+    @Test
+    public void testTransform() throws SQLException, IOException, ParseException{
+    	Statement st = cx.createStatement();
+    	ResultSet rs = st.executeQuery("SELECT ST_TRANSFORM(ST_GeomFromText('POINT (-76 39)',4326),900913)");
+    	rs.next();
+    	InputStream binaryStream = rs.getBinaryStream(1);
+        Geometry geometry = new WKBReader().read(new InputStreamInStream(binaryStream));
+        st.close();
+        assertThat(geometry.getSRID(),is(900913));
+    }
 
     private void insertThreePoints() throws SQLException{
     	Statement st = cx.createStatement();
